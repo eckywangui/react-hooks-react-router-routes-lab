@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { actors } from "../data";
 
 function Actors() {
-  return <div>{/*{code here}*/}</div>;
+  const[actorsData, setactorsData]=useState([]);
+  useEffect(()=>{
+    setactorsData(actors);
+  }, []);
+
+  return (
+    <div>
+      <h1>Actors Page</h1>
+      {actorsData.map((actor, index) => (
+        <div key={index}>
+          <h2>{actor.name}</h2>
+          <ul>
+            {actor.movies.map((movie, movieIndex) => (
+              <li key={movieIndex}>{movie}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Actors;
